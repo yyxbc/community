@@ -10,3 +10,8 @@ mybatis:
 logging:
   level:
     com.xbc.community.mapper : debug
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true

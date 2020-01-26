@@ -38,6 +38,7 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = githubProbider.getAccessToken(accessTokenDTO);
         GitHubUser gitHubUser = githubProbider.getUser(accessToken);
+        System.out.println(accessToken);
         if(gitHubUser!=null){
             User user = new User();
             String token =UUID.randomUUID().toString();
