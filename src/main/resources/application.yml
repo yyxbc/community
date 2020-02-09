@@ -8,10 +8,18 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 logging:
+  file:
+    name: logs/community.log
+    max-size: 200MB
+    max-history: 30
   level:
     com.xbc.community.mapper : debug
+    root: info
+
 pagehelper:
   helper-dialect: mysql
   params: count=countSql
   reasonable: true
   support-methods-arguments: true
+
+

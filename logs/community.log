@@ -1,0 +1,175 @@
+2020-02-09 19:54:13.124  INFO 3312 --- [Thread-14] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-09 19:54:13.129  INFO 3312 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-09 19:54:13.137  INFO 3312 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-09 19:54:13.900  INFO 3312 --- [restartedMain] com.xbc.community.CommunityApplication   : Starting CommunityApplication on DESKTOP-JGJR8P6 with PID 3312 (C:\Users\Hasee\Desktop\sb\community\target\classes started by Hasee in C:\Users\Hasee\Desktop\sb\community)
+2020-02-09 19:54:13.901  INFO 3312 --- [restartedMain] com.xbc.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2020-02-09 19:54:14.305  INFO 3312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-09 19:54:14.305  INFO 3312 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-09 19:54:14.306  INFO 3312 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-09 19:54:14.330  INFO 3312 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-09 19:54:14.331  INFO 3312 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 427 ms
+2020-02-09 19:54:14.482  INFO 3312 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-09 19:54:14.496  INFO 3312 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-02-09 19:54:14.841  INFO 3312 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-02-09 19:54:14.854  INFO 3312 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-09 19:54:14.854  INFO 3312 --- [restartedMain] com.xbc.community.CommunityApplication   : Started CommunityApplication in 1.006 seconds (JVM running for 130.857)
+2020-02-09 19:54:14.856  INFO 3312 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2020-02-09 19:54:37.319  INFO 12244 --- [restartedMain] com.xbc.community.CommunityApplication   : Starting CommunityApplication on DESKTOP-JGJR8P6 with PID 12244 (C:\Users\Hasee\Desktop\sb\community\target\classes started by Hasee in C:\Users\Hasee\Desktop\sb\community)
+2020-02-09 19:54:37.322  INFO 12244 --- [restartedMain] com.xbc.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2020-02-09 19:54:37.383  INFO 12244 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-02-09 19:54:37.384  INFO 12244 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-02-09 19:54:38.794  INFO 12244 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-09 19:54:38.804  INFO 12244 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-09 19:54:38.804  INFO 12244 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-09 19:54:38.905  INFO 12244 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-09 19:54:38.906  INFO 12244 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1522 ms
+2020-02-09 19:54:40.043  INFO 12244 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-09 19:54:40.193  INFO 12244 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-02-09 19:54:40.678  INFO 12244 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-02-09 19:54:40.719  INFO 12244 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-09 19:54:40.722  INFO 12244 --- [restartedMain] com.xbc.community.CommunityApplication   : Started CommunityApplication in 4.071 seconds (JVM running for 5.44)
+2020-02-09 19:54:47.565  INFO 12244 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-02-09 19:54:47.565  INFO 12244 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-02-09 19:54:47.571  INFO 12244 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2020-02-09 19:54:47.605  INFO 12244 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-02-09 19:54:47.747  INFO 12244 --- [http-nio-8080-exec-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (com.mysql.jdbc.JDBC4Connection.getNetworkTimeout()I)
+2020-02-09 19:54:47.751  INFO 12244 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-02-09 19:54:47.756 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:47.769 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:47.780 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:47.788 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:47.789 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:47.790 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:47.807 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.QuestionMapper.findById     : ==>  Preparing: select * from question where id=? 
+2020-02-09 19:54:47.807 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.QuestionMapper.findById     : ==> Parameters: 14(Integer)
+2020-02-09 19:54:47.813 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : ====>  Preparing: select * from user where id =? 
+2020-02-09 19:54:47.814 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : ====> Parameters: 1(Integer)
+2020-02-09 19:54:47.815 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : <====      Total: 1
+2020-02-09 19:54:47.815 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.QuestionMapper.findById     : <==      Total: 1
+2020-02-09 19:54:47.821 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.CommentMapper.listByQuestionId   : ==>  Preparing: select * from comment where parent_id = ? order by gmt_create desc 
+2020-02-09 19:54:47.821 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.CommentMapper.listByQuestionId   : ==> Parameters: 14(Integer)
+2020-02-09 19:54:47.823 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : ====>  Preparing: select * from user where id =? 
+2020-02-09 19:54:47.823 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : ====> Parameters: 1(Integer)
+2020-02-09 19:54:47.825 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : <====      Total: 1
+2020-02-09 19:54:47.825 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.CommentMapper.listByQuestionId   : <==      Total: 1
+2020-02-09 19:54:47.826 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.QuestionMapper.incView      : ==>  Preparing: update question set view_count = view_count + 1 where id =? 
+2020-02-09 19:54:47.826 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.QuestionMapper.incView      : ==> Parameters: 14(Integer)
+2020-02-09 19:54:47.879 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.QuestionMapper.incView      : <==    Updates: 1
+2020-02-09 19:54:47.885 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.QuestionMapper.findByRelated     : ==>  Preparing: select * from question where id != ? and tag regexp ? 
+2020-02-09 19:54:47.886 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.QuestionMapper.findByRelated     : ==> Parameters: 14(Integer), 1(String)
+2020-02-09 19:54:47.887 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : ====>  Preparing: select * from user where id =? 
+2020-02-09 19:54:47.888 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : ====> Parameters: 1(Integer)
+2020-02-09 19:54:47.888 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findById         : <====      Total: 1
+2020-02-09 19:54:47.895 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.QuestionMapper.findByRelated     : <==      Total: 15
+2020-02-09 19:54:48.438 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.442 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.445 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.445 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.445 DEBUG 12244 --- [http-nio-8080-exec-2] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.446 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.446 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.447 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.448 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.448 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.448 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.447 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.449 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.449 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.450 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.450 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.450 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.449 DEBUG 12244 --- [http-nio-8080-exec-2] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.451 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.451 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.454 DEBUG 12244 --- [http-nio-8080-exec-2] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.454 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.455 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.456 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.458 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.462 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.463 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.463 DEBUG 12244 --- [http-nio-8080-exec-2] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.465 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.466 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.466 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.466 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.465 DEBUG 12244 --- [http-nio-8080-exec-2] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.469 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.470 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.472 DEBUG 12244 --- [http-nio-8080-exec-2] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.489 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.490 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.493 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.494 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.494 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.495 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.495 DEBUG 12244 --- [http-nio-8080-exec-9] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.496 DEBUG 12244 --- [http-nio-8080-exec-9] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.497 DEBUG 12244 --- [http-nio-8080-exec-9] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.497 DEBUG 12244 --- [http-nio-8080-exec-9] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.497 DEBUG 12244 --- [http-nio-8080-exec-9] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.498 DEBUG 12244 --- [http-nio-8080-exec-9] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.500 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.502 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.503 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.503 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.504 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.504 DEBUG 12244 --- [http-nio-8080-exec-6] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.501 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.507 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.508 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.508 DEBUG 12244 --- [http-nio-8080-exec-10] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.509 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.509 DEBUG 12244 --- [http-nio-8080-exec-10] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.509 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.509 DEBUG 12244 --- [http-nio-8080-exec-7] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.510 DEBUG 12244 --- [http-nio-8080-exec-10] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.510 DEBUG 12244 --- [http-nio-8080-exec-10] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.510 DEBUG 12244 --- [http-nio-8080-exec-10] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.511 DEBUG 12244 --- [http-nio-8080-exec-10] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.530 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.531 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.534 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.535 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.535 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.543 DEBUG 12244 --- [http-nio-8080-exec-4] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.565 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.565 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.566 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.567 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.567 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.568 DEBUG 12244 --- [http-nio-8080-exec-5] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.614 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.614 DEBUG 12244 --- [http-nio-8080-exec-8] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.615 DEBUG 12244 --- [http-nio-8080-exec-8] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.615 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.617 DEBUG 12244 --- [http-nio-8080-exec-8] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.617 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.618 DEBUG 12244 --- [http-nio-8080-exec-8] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.618 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.619 DEBUG 12244 --- [http-nio-8080-exec-8] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.619 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.620 DEBUG 12244 --- [http-nio-8080-exec-8] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.620 DEBUG 12244 --- [http-nio-8080-exec-3] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:54:48.814 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findByToken      : ==>  Preparing: select * from user where token =? 
+2020-02-09 19:54:48.814 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findByToken      : ==> Parameters: a12e12fe-899c-41ae-8702-703900c5354f(String)
+2020-02-09 19:54:48.815 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.mapper.UserMapper.findByToken      : <==      Total: 1
+2020-02-09 19:54:48.816 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.N.unreadCountById                : ==>  Preparing: select count(*) from notification where status =0 
+2020-02-09 19:54:48.816 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.N.unreadCountById                : ==> Parameters: 
+2020-02-09 19:54:48.817 DEBUG 12244 --- [http-nio-8080-exec-1] c.x.c.m.N.unreadCountById                : <==      Total: 1
+2020-02-09 19:59:45.119  INFO 12244 --- [Thread-14] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-02-09 19:59:45.120  INFO 12244 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-02-09 19:59:45.129  INFO 12244 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-02-09 19:59:46.187  INFO 12244 --- [restartedMain] com.xbc.community.CommunityApplication   : Starting CommunityApplication on DESKTOP-JGJR8P6 with PID 12244 (C:\Users\Hasee\Desktop\sb\community\target\classes started by Hasee in C:\Users\Hasee\Desktop\sb\community)
+2020-02-09 19:59:46.188  INFO 12244 --- [restartedMain] com.xbc.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2020-02-09 19:59:47.298  INFO 12244 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-02-09 19:59:47.307  INFO 12244 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-02-09 19:59:47.311  INFO 12244 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
+2020-02-09 19:59:47.387  INFO 12244 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-02-09 19:59:47.388  INFO 12244 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1196 ms
+2020-02-09 19:59:47.831  INFO 12244 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-02-09 19:59:47.896  INFO 12244 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-02-09 19:59:48.527  INFO 12244 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-02-09 19:59:48.546  INFO 12244 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-02-09 19:59:48.546  INFO 12244 --- [restartedMain] com.xbc.community.CommunityApplication   : Started CommunityApplication in 2.487 seconds (JVM running for 313.265)
+2020-02-09 19:59:48.548  INFO 12244 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
