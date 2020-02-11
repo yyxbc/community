@@ -2,6 +2,7 @@ package com.xbc.community.controller;
 
 import com.xbc.community.dto.FileDTO;
 import com.xbc.community.provider.OssProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @Controller
+@Slf4j
 public class FileController {
 
     @Autowired
@@ -32,6 +34,7 @@ public class FileController {
             fileDTO.setUrl(url);
         } catch (IOException e) {
             e.printStackTrace();
+            log.error("文件上传错误");
         }
 
         return fileDTO;

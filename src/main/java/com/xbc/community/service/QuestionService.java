@@ -24,4 +24,8 @@ public interface QuestionService {
     void incLikeCount(Question question);
 
     List<Question> selectRelated(Question question);
+
+    List<Question> findall();
+
+    PageInfo<Question> findByTag(String tag, int pageNo, int pageSize);
 }

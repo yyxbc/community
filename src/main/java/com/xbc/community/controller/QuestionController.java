@@ -6,6 +6,7 @@ import com.xbc.community.exception.CustomizeErrorCode;
 import com.xbc.community.exception.CustomizeException;
 import com.xbc.community.service.CommentService;
 import com.xbc.community.service.QuestionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class QuestionController {
     @Autowired
     QuestionService questionService;
@@ -26,6 +28,7 @@ public class QuestionController {
 
         Question question = questionService.findById(id);
         if(question==null){
+            log.error("问题未找到，{}",id);
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
         List<Comment> comments = commentService.listByQuestionId(id);

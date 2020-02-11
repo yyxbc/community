@@ -7,6 +7,7 @@ import com.xbc.community.exception.CustomizeErrorCode;
 import com.xbc.community.service.CommentService;
 import com.xbc.community.service.QuestionService;
 import com.xbc.community.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@Slf4j
 public class CommentController {
     @Autowired
     UserService userService;
@@ -29,6 +31,7 @@ public class CommentController {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
         if(comment==null||comment.getContent()==null||comment.getContent()==""){
+            log.error("评论为空");
             return ResultDTO.errorOf(CustomizeErrorCode.COMMENT_IS_EMPTY);
         }
         System.out.println(user);

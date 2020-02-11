@@ -1,5 +1,6 @@
 package com.xbc.community.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import java.awt.*;
 
 @Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")
+@Slf4j
 public class CustomizeErrorController implements ErrorController {
     @Override
     public String getErrorPath() {
@@ -23,9 +25,11 @@ public class CustomizeErrorController implements ErrorController {
     public ModelAndView errorHtml(HttpServletRequest request, Model model){
         HttpStatus status = getStatus(request);
         if(status.is4xxClientError()){
+            log.error("请求错误");
             model.addAttribute("message","你这个请求错了吧，换个姿势?");
         }
         if(status.is5xxServerError()){
+            log.error("服务器错误");
             model.addAttribute("message","服务冒烟了，要不你稍后再试试！！");
         }
         return new ModelAndView("error");

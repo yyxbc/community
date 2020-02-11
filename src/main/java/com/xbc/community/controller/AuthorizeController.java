@@ -5,6 +5,7 @@ import com.xbc.community.dto.AccessTokenDTO;
 import com.xbc.community.dto.GitHubUser;
 import com.xbc.community.provider.GitHubProbider;
 import com.xbc.community.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
+@Slf4j
 public class AuthorizeController {
 
     @Autowired
@@ -49,6 +51,7 @@ public class AuthorizeController {
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
         }else {
+            log.error("callback get github error,{}",gitHubUser);
             return "redirect:/";
         }
 

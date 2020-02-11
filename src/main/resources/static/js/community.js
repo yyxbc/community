@@ -39,11 +39,16 @@ function comment2target(targetId, type, content) {
 }
 
 function comment(e) {
-    console.log(e);
     var commentId = e.getAttribute("data-id");
-    console.log(commentId);
     var content = $("#input-" + commentId).val();
-    console.log(content);
+    var test = document.getElementById("comment-"+commentId);
+    console.log(test);
+    console.log(111);
+    window.localStorage.setItem("sss996",test.outerHTML);
+    console.log(test);
+    window.localStorage.setItem("id",commentId);
+    //添加一个全局标志位，说明添加成功了
+    window.localStorage.setItem("commentSuccess","true");
     comment2target(commentId, 2, content);
 }
 
@@ -52,6 +57,9 @@ function comment(e) {
 * */
 function collapseComments(e) {
     var id = e.getAttribute("data-id");
+    if(id==null){
+        id = window.localStorage.getItem("id");
+    }
     var comments = $("#comment-" + id);
     var collapse = e.getAttribute("data-collapse");
     if (collapse) {
@@ -60,6 +68,8 @@ function collapseComments(e) {
         e.classList.remove("active");
     } else {
         var subCommentContainer = $("#comment-" + id);
+        console.log(subCommentContainer);
+        console.log(11);
         if (subCommentContainer.children().length != 1) {
             //展开二级评论
             comments.addClass("in");
@@ -99,7 +109,6 @@ function collapseComments(e) {
                     commentElement.append(mediaElement);
                     subCommentContainer.prepend(commentElement);
                 });
-
                 //展开二级评论
                 comments.addClass("in");
                 e.setAttribute("data-collapse", "in");
@@ -123,4 +132,25 @@ function selectTag(e) {
             $("#tag").val(value);
         }
     }
+}
+
+$(function(){
+    var cs = window.localStorage.getItem("commentSuccess");
+    var s9 = window.localStorage.getItem("sss996");
+    var judgespan = parseToDOM(s9);
+    console.log(judgespan)
+    if(cs == "true"){
+        collapseComments(judgespan[0]);
+        //成功后清空localstorage
+        window.localStorage.removeItem("id");
+        window.localStorage.removeItem("sss996");
+        window.localStorage.removeItem("commentSuccess");
+    }
+})
+
+function parseToDOM(str) {
+    var div = document.createElement("div");
+    if(typeof  str == "string")
+        div.innerHTML = str;
+    return div.childNodes;
 }

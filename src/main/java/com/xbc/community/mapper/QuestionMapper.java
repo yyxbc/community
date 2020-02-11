@@ -55,4 +55,8 @@ public interface QuestionMapper {
     @Select("select * from question where title regexp #{title}")
     @ResultMap(value = "userMap")
     List<Question> findallBySearch(Question question);
+
+    @Select("select * from question where tag regexp #{tag}")
+    @ResultMap(value = "userMap")
+    List<Question> findByTag(String tag);
 }

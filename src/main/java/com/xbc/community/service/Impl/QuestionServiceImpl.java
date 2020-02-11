@@ -7,6 +7,7 @@ import com.xbc.community.exception.CustomizeErrorCode;
 import com.xbc.community.exception.CustomizeException;
 import com.xbc.community.mapper.QuestionMapper;
 import com.xbc.community.service.QuestionService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class QuestionServiceImpl implements QuestionService {
     @Autowired
     QuestionMapper questionMapper;
@@ -31,6 +33,7 @@ public class QuestionServiceImpl implements QuestionService {
             question.setGmtModified(System.currentTimeMillis());
             int updated = questionMapper.update(question);
             if (updated != 1) {
+                log.error("问题未找到,{}",question);
                     throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
@@ -70,7 +73,9 @@ public class QuestionServiceImpl implements QuestionService {
     public Question findById(Integer id) {
         Question question = questionMapper.findById(id);
         if (question == null) {
+            log.error("问题未找到哦,{}",id);
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+
         }
         return question;
     }
@@ -105,6 +110,19 @@ public class QuestionServiceImpl implements QuestionService {
         for(Question q:questions){
             System.out.println(q);
         }
+        return questions;
+    }
+
+    @Override
+    public List<Question> findall() {
+        return questionMapper.findall();
+    }
+
+    @Override
+    public PageInfo<Question> findByTag(String tag, int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
+        List<Question> list = questionMapper.findByTag(tag);
+        PageInfo<Question> questions = new PageInfo(list);
         return questions;
     }
 }

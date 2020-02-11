@@ -6,6 +6,7 @@ import com.xbc.community.bean.User;
 import com.xbc.community.exception.CustomizeErrorCode;
 import com.xbc.community.exception.CustomizeException;
 import com.xbc.community.service.QuestionService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
+@Slf4j
 public class PublishController {
 
     @Autowired
@@ -25,6 +27,7 @@ public class PublishController {
     public String publish(@PathVariable(name = "id") Integer id, Model model) {
         Question question = questionService.findById(id);
         if (question == null) {
+            log.error("问题未找到,{}",id);
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
         model.addAttribute("question", question);
@@ -43,25 +46,30 @@ public class PublishController {
             , Model model) {
         model.addAttribute("tags", TagCache.get());
         if (question == null) {
+            log.error("问题未找到,{}",question);
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
         model.addAttribute("question", question);
         if (question.getTitle() == null || question.getTitle().equals("")) {
+            log.error("提问发生错误,标题不能为空");
             model.addAttribute("error", "标题不能为空");
             return "publish";
         }
         if (question.getDescription() == null || question.getDescription().equals("")) {
             model.addAttribute("error", "问题补充不能为空");
+            log.error("提问发生错误,问题补充不能为空");
             return "publish";
         }
         if (question.getTag() == null || question.getTag().equals("")) {
             model.addAttribute("error", "标签不能为空");
+            log.error("提问发生错误,标签不能为空");
             return "publish";
         }
 
         String invalid = TagCache.filterInvalid(question.getTag());
         if(StringUtils.isNotBlank(invalid)){
             model.addAttribute("error","输入非法标签："+invalid);
+            log.error("提问发生错误,输入非法标签："+invalid);
             return "publish";
         }
 
