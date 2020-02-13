@@ -2,6 +2,7 @@ package com.xbc.community.controller;
 
 import com.xbc.community.bean.Comment;
 import com.xbc.community.bean.Question;
+import com.xbc.community.dto.ResultDTO;
 import com.xbc.community.exception.CustomizeErrorCode;
 import com.xbc.community.exception.CustomizeException;
 import com.xbc.community.service.CommentService;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -46,5 +49,19 @@ public class QuestionController {
         }
 
         return "question";
+    }
+
+    @PostMapping("/question/{id}")
+    @ResponseBody
+    public ResultDTO delete(@PathVariable(name="id") String id) {
+        log.info("要删除的是："+id);
+        int num=1;
+        //int num =questionService.delete(parseInt(id));
+        if(num==1){
+            return ResultDTO.okOf();
+        }else{
+            throw new CustomizeException(CustomizeErrorCode.SYS_ERROR);
+        }
+
     }
 }

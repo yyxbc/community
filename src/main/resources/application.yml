@@ -1,9 +1,6 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: 123456
+  profiles:
+    active: dev
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
@@ -21,5 +18,5 @@ pagehelper:
   params: count=countSql
   reasonable: true
   support-methods-arguments: true
-
-
+server:
+  port: 8888

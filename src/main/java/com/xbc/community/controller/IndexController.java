@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.xbc.community.Cache.HotTagCache;
 import com.xbc.community.bean.Question;
 import com.xbc.community.service.QuestionService;
+import com.xbc.community.service.TagService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class IndexController {
 
     @Autowired
     HotTagCache hotTagCache;
+    @Autowired
+    TagService tagService;
 
     @GetMapping("/")
     public String index(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
@@ -41,6 +44,7 @@ public class IndexController {
         }
         model.addAttribute("tags", tags);
         model.addAttribute("questions", questions);
+        model.addAttribute("tagslist", tagService.getAll());
         return "index";
     }
 }

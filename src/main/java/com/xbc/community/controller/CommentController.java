@@ -27,6 +27,7 @@ public class CommentController {
     @PostMapping("/comment")
     @ResponseBody
     public Object post(@RequestBody Comment comment, @SessionAttribute(value = "user",required = false)User user) {
+        log.info("用户开始评论，{} ",user);
         if(user==null){
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
@@ -47,6 +48,7 @@ public class CommentController {
     @GetMapping("/comment/{id}")
     @ResponseBody
     public Object post(@PathVariable(name = "id") Integer id) {
+        log.info("查找二级评论，父级id ：{} ",id);
         List<Comment> comments2 = commentService.listByCommentId(id);
         return comments2;
     }

@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    prd
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.94.23.170:3306/community?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+github:
+  clientid: 8dbc6e07750093b1bc32
+  clientsecret: 06ec7d12fd2b87fde5e327a4aaa2b38af61d2164
+  redirecturi: http://47.94.23.170:8888/callback

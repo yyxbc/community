@@ -2,6 +2,10 @@ body {
     background-color: #efefef;
 }
 
+.git-img{
+    width: 50px;
+}
+
 .main {
     background-color: white;
     margin: 30px;

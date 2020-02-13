@@ -4,6 +4,7 @@ import com.xbc.community.bean.User;
 import com.xbc.community.dto.NotificationDTO;
 import com.xbc.community.enums.NotificationTypeEnum;
 import com.xbc.community.service.NotificationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
+@Slf4j
 public class NotificationController {
 
     @Autowired
@@ -19,6 +21,7 @@ public class NotificationController {
 
     @GetMapping("/notification/{id}")
     public String profile(  @PathVariable(name = "id") Integer id, Model model, @SessionAttribute(value = "user",required = false) User user) {
+        log.info("回复通知");
         if(user==null){
             return "redirect:/";
         }

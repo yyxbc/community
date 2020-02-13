@@ -28,7 +28,7 @@
             <li class="dropdown" th:if="${session.user!=null}">
                 <a href="#" class="dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="true">
-                    <span th:text="${session.user.name}"></span>
+                    <span th:text="${session.user.username}"></span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -38,7 +38,7 @@
                 </ul>
             </li>
             <li th:unless="${session.user!=null}">
-                <a href="https://github.com/login/oauth/authorize?client_id=8dbc6e07750093b1bc32&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a>
+                <a href="login">登录</a>
             </li>
         </ul>
     </div>

@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class CommunityApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(CommunityApplication.class, args);
     }

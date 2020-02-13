@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
     }
     @Override
     public void insertOrUpdate(User user){
-       User dbuser = userMapper.findByAccountId(user.getAccountId());
+       User dbuser = userMapper.findByPassword(user.getPassword());
        if(dbuser==null){
            user.setGmtCreate(System.currentTimeMillis());
            user.setGmtModified(user.getGmtCreate());
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
        }else{
            dbuser.setGmtModified(System.currentTimeMillis());
            dbuser.setAvatarUrl(user.getAvatarUrl());
-           dbuser.setName(user.getName());
+           dbuser.setUsername(user.getUsername());
            dbuser.setToken(user.getToken());
            userMapper.update(dbuser);
        }

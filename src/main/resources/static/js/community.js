@@ -27,7 +27,7 @@ function comment2target(targetId, type, content) {
             } else if (response.code = 2003) {
                 var isAccepted =confirm(response.message);
                 if(isAccepted){
-                    window.open("https://github.com/login/oauth/authorize?client_id=8dbc6e07750093b1bc32&redirect_uri=http://localhost:8080/callback&scope=user&state=1");
+                    window.open("https://github.com/login/oauth/authorize?client_id=8dbc6e07750093b1bc32&redirect_uri=http://47.94.23.170:8888/callback&scope=user&state=1");
                     window.localStorage.setItem("closable",true)
                 }
             } else {
@@ -153,4 +153,27 @@ function parseToDOM(str) {
     if(typeof  str == "string")
         div.innerHTML = str;
     return div.childNodes;
+}
+
+function delete_question() {
+       var id = $("#question-id").val();
+       console.log(id);
+    $.ajax({
+        type: "post",
+        url: "/question/"+id,
+        contentType: "application/json",
+        data: {
+
+            "id": id
+        },
+        success: function (response) {
+            console.log(response)
+            if (response.code == 200) {
+                window.location.href("http://localhost:8888/");
+            } else {
+                alert(response.message);
+            }
+        },
+        datatype: "json"
+    });
 }

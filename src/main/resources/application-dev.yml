@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/community?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
+github:
+  clientid: 8dc2ec6a8c22cbf3906a
+  clientsecret: 86d36eb17158bdb35a168c5e1b2d065ea59a2404
+  redirecturi: http://localhost:8888/callback
+

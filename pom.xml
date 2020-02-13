@@ -14,6 +14,25 @@
     <name>community</name>
     <description>Demo project community for Spring Boot</description>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <properties>
+                <env>prd</env>
+            </properties>
+        </profile>
+    </profiles>
+
+
     <properties>
         <java.version>1.8</java.version>
         <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
@@ -131,6 +150,10 @@
             <version>1.5.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -140,6 +163,20 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <resources>
+
+            <resource>
+                <directory>src/main/resources/${env}</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>dev/*</exclude>
+                    <exclude>prd/*</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 
 </project>

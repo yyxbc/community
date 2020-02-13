@@ -24,7 +24,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4 class="question-title"><span th:text="${question.title}"></span></h4>
                 <span class="text-desc">
-                作者:<span th:text="${question.user.name}"></span> |
+                作者:<span th:text="${question.user.username}"></span> |
                 发布时间:<span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span> |
                 阅读数:<span th:text="${question.viewCount}"></span>
             </span>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="media-body" th:id="${'comment-body-'+comment.id}">
                             <h5 class="media-heading">
-                                <span th:text="${comment?.user.name}"></span>
+                                <span th:text="${comment?.user.username}"></span>
                             </h5>
                             <div th:text="${comment?.content}"></div>
                             <div class="menu">
@@ -117,7 +117,7 @@
                             </div>
                             <div class="media-body">
                                 <h5 class="media-heading">
-                                    <span th:text="${session.user !=null ? session.user.name:'匿名用户'}"></span>
+                                    <span th:text="${session.user !=null ? session.user.username:'匿名用户'}"></span>
                                 </h5>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="media-body">
                         <h5 class="media-heading">
-                            <span th:text="${question?.user.name}"></span>
+                            <span th:text="${question?.user.username}"></span>
                         </h5>
                     </div>
                 </div>

@@ -48,7 +48,7 @@ public class CommentServiceImpl implements CommentService {
             Integer type = NotificationTypeEnum.REPLY_COMMENT.getType();
             Integer creator = comment1.getCommentator();
             String outerTitle = comment1.getContent();
-            String notifierName = comment.getUser().getName();
+            String notifierName = comment.getUser().getUsername();
             Integer outerid =comment1.getParentId();
             createNotify(comment,type,creator, outerTitle,notifierName, outerid);
         } else {
@@ -65,7 +65,7 @@ public class CommentServiceImpl implements CommentService {
             Integer type = NotificationTypeEnum.REPLY_QUESTION.getType();
             Integer creator = question.getCreator();
             String outerTitle = question.getTitle();
-            String notifierName = comment.getUser().getName();
+            String notifierName = comment.getUser().getUsername();
             Integer outerid =comment.getParentId();
             createNotify(comment,type,creator,outerTitle, notifierName,outerid);
 

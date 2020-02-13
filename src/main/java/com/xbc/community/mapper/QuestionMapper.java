@@ -59,4 +59,7 @@ public interface QuestionMapper {
     @Select("select * from question where tag regexp #{tag}")
     @ResultMap(value = "userMap")
     List<Question> findByTag(String tag);
+
+    @Delete("delete * from question where id =#{id}")
+    int delete(Integer id);
 }

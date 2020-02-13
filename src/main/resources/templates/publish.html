@@ -21,7 +21,7 @@
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true">发起</span></h2>
             <hr>
             <form action="/publish" method="post">
-                <input type="hidden" th:value="${question?.id}" name="id">
+                <input type="hidden" th:value="${question?.id}" name="id" id="question-id">
                 <div class="form-group">
                     <label for="title">问题标题(简明扼要):</label>
                     <input type="text" class="form-control" th:value="${question?.title}" id="title" name="title"
@@ -78,6 +78,7 @@
                         <div class="alert alert-danger col-lg-3 col-md-12 col-sm-12 col-xs-12" th:text="${error}"
                              th:if="${error!=null}"></div>
                         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                            <button onclick="delete_question()" class="btn btn-warning btn-publish">删除</button>
                             <button type="submit" class="btn btn-success btn-publish">发布</button>
                         </div>
                     </div>

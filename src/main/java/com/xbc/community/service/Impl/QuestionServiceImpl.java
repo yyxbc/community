@@ -101,7 +101,7 @@ public class QuestionServiceImpl implements QuestionService {
             return new ArrayList<>();
         }
         String[] tags = StringUtils.split(question.getTag(),",");
-        System.out.println(tags+question.getTag());
+        System.out.println(tags.toString()+question.getTag());
         String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
         Question regex=new Question();
         regex.setTag(regexpTag);
@@ -124,5 +124,13 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> list = questionMapper.findByTag(tag);
         PageInfo<Question> questions = new PageInfo(list);
         return questions;
+    }
+
+    @Override
+    public int delete(Integer id) {
+       int num = questionMapper.delete(id);
+       //int num1 = commentMapper.delete(id);
+        //if(num==num1==1){ num=1}else{num0}
+        return num;
     }
 }

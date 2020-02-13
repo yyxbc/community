@@ -28,4 +28,6 @@ public interface QuestionService {
     List<Question> findall();
 
     PageInfo<Question> findByTag(String tag, int pageNo, int pageSize);
+
+    int delete(Integer id);
 }

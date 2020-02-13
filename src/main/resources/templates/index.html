@@ -20,6 +20,26 @@
 </script>
 <body>
 <nav th:replace="~{common :: navbar}"></nav>
+
+<div class="">
+    <ul class="nav nav-tabs" >
+        <li style="margin-left: 50px;" class="btn-info">
+            <button type="button" onclick="window.location.href='/'" class="btn btn-default" aria-haspopup="true" aria-expanded="false">
+                <span th:text="全部"></span></button>
+        </li>
+        <li th:each="selectCategory:${tagslist}">
+            <button type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span th:text="${selectCategory.categoryName}"></span> <span class="caret"></span></button>
+            <ul class="dropdown-menu" >
+                <li th:each="selectTag:${selectCategory.tags}">
+                    <a th:href="@{/(tag=${selectTag})}">
+                    <span class="label label-info">
+                                    <span class="glyphicon glyphicon-tags"  th:text="${'  '+selectTag}"></span></span></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
