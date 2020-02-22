@@ -6,6 +6,7 @@ import com.xbc.community.bean.User;
 import com.xbc.community.dto.NotificationDTO;
 
 public interface NotificationService {
+
     void insert(Notification notification);
 
     PageInfo<NotificationDTO> list(Integer id, int pageNo, int pageSize);

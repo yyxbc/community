@@ -42,7 +42,10 @@ public class CommentServiceImpl implements CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             Integer commentId = commentMapper.insert(comment);
-            comment = commentMapper.findById(commentId);
+            if(commentId!=1){
+                throw new CustomizeException(CustomizeErrorCode.COMMENT_INSERT_FAILED);
+            }
+            System.out.println(comment);
             commentMapper.incCommentCount(comment1);
             //创建通知
             Integer type = NotificationTypeEnum.REPLY_COMMENT.getType();
@@ -58,7 +61,10 @@ public class CommentServiceImpl implements CommentService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
             Integer commentId = commentMapper.insert(comment);
-            comment = commentMapper.findById(commentId);
+            System.out.println(comment);
+            if(commentId!=1){
+                throw new CustomizeException(CustomizeErrorCode.COMMENT_INSERT_FAILED);
+            }
             questionMapper.incCommentCount(question);
             //创建通知
 
@@ -66,6 +72,7 @@ public class CommentServiceImpl implements CommentService {
             Integer creator = question.getCreator();
             String outerTitle = question.getTitle();
             String notifierName = comment.getUser().getUsername();
+            System.out.println(notifierName);
             Integer outerid =comment.getParentId();
             createNotify(comment,type,creator,outerTitle, notifierName,outerid);
 
@@ -73,9 +80,6 @@ public class CommentServiceImpl implements CommentService {
     }
 
     public void createNotify(Comment comment, Integer type, Integer creator, String outerTitle, String notifierName, Integer outerid){
-        if(comment.getCommentator()==creator){
-            return;
-        }
         Notification notification = new Notification();
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setType(type);

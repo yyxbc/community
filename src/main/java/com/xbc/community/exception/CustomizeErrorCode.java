@@ -8,11 +8,15 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     SYS_ERROR(2004,"服务器冒烟了，要不你稍后试试"),
     TYPE_PARAM_ERROR(2005,"评论类型错误"),
     COMMENT_NOT_FOUND(2006,"回复的评论不存在"),
-    COMMENT_IS_EMPTY(2007,"输入的评论内容不能为空"),
-    READ_NOTIFICATION_FAIL(2008,"读别人的信息"),
-    NOTIFICATION_NOT_FOUND(2009,"消息不见了"),
-    FILE_UPLOAD_FAIL(2010,"文件上传失败");
-
+    COMMENT_INSERT_FAILED(2007,"回复失败"),
+    COMMENT_IS_EMPTY(2008,"输入的评论内容不能为空"),
+    READ_NOTIFICATION_FAIL(2009,"读别人的信息"),
+    NOTIFICATION_NOT_FOUND(2010,"消息不见了"),
+    FILE_UPLOAD_FAIL(2011,"文件上传失败"),
+    USER_USERNAME_IS_EMPTY(2012,"用户名不能为空"),
+    USER_PASSWORD_IS_EMPTY(2013,"密码不能为空"),
+    USER_IS_EXIST(2014,"用户已存在，请重新输入用户名"),
+    CHANGE_USERINFO_FAILED(2015,"修改个人资料失败");
 
 
 

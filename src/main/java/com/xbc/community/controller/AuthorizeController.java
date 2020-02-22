@@ -3,6 +3,8 @@ package com.xbc.community.controller;
 import com.xbc.community.bean.User;
 import com.xbc.community.dto.AccessTokenDTO;
 import com.xbc.community.dto.GitHubUser;
+import com.xbc.community.dto.ResultDTO;
+import com.xbc.community.exception.CustomizeErrorCode;
 import com.xbc.community.provider.GitHubProbider;
 import com.xbc.community.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +13,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -76,6 +80,23 @@ public class AuthorizeController {
     return "redirect:/";
     }
 
+    @PostMapping("/login")
+    @ResponseBody
+    public ResultDTO login(HttpServletResponse response, User user){
+        //user.setAvatarUrl();
+        System.out.println(user);
+        if(user.getUsername()==null||user.getUsername().equals("")){
+            log.info("登录失败，请输入用户名");
+            return ResultDTO.errorOf(CustomizeErrorCode.USER_USERNAME_IS_EMPTY);
+        }else if(user.getPassword()==null||user.getPassword().equals("")){
+            log.info("登录失败，请输入密码");
+            return ResultDTO.errorOf(CustomizeErrorCode.USER_PASSWORD_IS_EMPTY);
+        }
+        user = userService.findByUser(user);
+        response.addCookie(new Cookie("token",user.getToken()));
+        return ResultDTO.okOf();
+    }
+
     @GetMapping("/login")
     public String login(){
         return "login";
@@ -84,5 +105,20 @@ public class AuthorizeController {
     @GetMapping("/register")
     public String register(){
         return "register";
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public ResultDTO register(User user){
+        String token =UUID.randomUUID().toString();
+        user.setToken(token);
+        //user.setAvatarUrl();
+        System.out.println(user);
+        user = userService.insert(user);
+        if(user==null){
+            log.info("注册失败，用户已存在");
+            return ResultDTO.errorOf(CustomizeErrorCode.USER_IS_EXIST);
+        }
+        return ResultDTO.okOf();
     }
 }

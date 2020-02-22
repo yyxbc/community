@@ -6,6 +6,9 @@ import lombok.Data;
 public class HotTagDTO implements Comparable{
     private String name;
     private Integer priority;
+    private Integer questionCount;
+    private Integer commentCount;
+    private Integer viewCount;
 
     @Override
     public int compareTo(Object o) {

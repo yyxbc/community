@@ -1,6 +1,7 @@
 package com.xbc.community.mapper;
 
 import com.xbc.community.bean.Question;
+import com.xbc.community.dto.QuestionQueryDTO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 
@@ -48,7 +49,7 @@ public interface QuestionMapper {
     @Update("update question set like_count = like_count + 1 where id =#{id}")
     int incLikeCount(Question question);
 
-    @Select("select * from question where id != #{id} and tag regexp #{tag}")
+    @Select("select * from question where id != #{id} and tag regexp #{tag} limit 20")
     @ResultMap(value = "userMap")
     List<Question> findByRelated(Question question);
 
@@ -62,4 +63,65 @@ public interface QuestionMapper {
 
     @Delete("delete * from question where id =#{id}")
     int delete(Integer id);
+
+    @Select("select count(*) from question where tag regexp #{hot}")
+    int findQuestionCountByTag(String hot);
+
+    @Select("select sum(comment_count) from question where tag regexp #{hot}")
+    int findCommentCountByTag(String hot);
+
+    @Select("select sum(view_count) from question where tag regexp #{hot}")
+    int findViewCountByTag(String hot);
+
+    @Select(" <script> SELECT * from question  " +
+            " <where>\n" +
+            "            <if test=\"sort != null and sort != '' and sort == 'no'\">\n" +
+            "                and comment_count = 0\n" +
+            "            </if>\n" +
+            "            <if test=\"time != null and time != ''\">\n" +
+            "                and gmt_create > #{time}\n" +
+            "            </if>\n" +
+            "        </where>" +
+            "        <if test=\" sort == 'new'\">\n" +
+            "            order by gmt_create desc\n" +
+            "        </if>\n" +
+            "        <if test=\"sort == 'no'\">\n" +
+            "            order by gmt_create desc\n" +
+            "        </if>\n" +
+            "        <if test=\"sort != null and sort != '' and (sort == 'hot' || sort == 'hot7' || sort == 'hot30')\">\n" +
+            "            order by comment_count desc\n" +
+            "        </if></script>")
+    List<Question> findBySort(QuestionQueryDTO sort);
+
+
+    @Select("<script>select * from question " +
+            "<where>\n" +
+            "            <if test=\"search != null and search != ''\">\n" +
+            "                and title regexp #{search}\n" +
+            "            </if>\n" +
+            "            <if test=\"tag != null and tag != ''\">\n" +
+            "                and tag regexp #{tag}\n" +
+            "            </if>\n" +
+            "            <if test=\"sort != null and sort != '' and sort == 'no'\">\n" +
+            "                and comment_count = 0\n" +
+            "            </if>\n" +
+            "            <if test=\"time != null and time != ''\">\n" +
+            "                and gmt_create > #{time}\n" +
+            "            </if>\n" +
+            "        </where>\n" +
+            "        <if test=\"sort == null or sort == ''\">\n" +
+            "            order by gmt_create desc\n" +
+            "        </if>\n" +
+            "        <if test=\"sort != null and sort != '' and sort == 'new'\">\n" +
+            "            order by gmt_create desc\n" +
+            "        </if>\n" +
+            "        <if test=\"sort != null and sort != '' and sort == 'no'\">\n" +
+            "            order by gmt_create desc\n" +
+            "        </if>\n" +
+            "        <if test=\"sort != null and sort != '' and (sort == 'hot' || sort == 'hot7' || sort == 'hot30')\">\n" +
+            "            order by comment_count desc\n" +
+            "        </if>" +
+            "</script>")
+    @ResultMap(value = "userMap")
+    List<Question> list(QuestionQueryDTO questionQueryDTO);
 }

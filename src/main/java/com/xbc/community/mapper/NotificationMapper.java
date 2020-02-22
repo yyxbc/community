@@ -14,7 +14,7 @@ public interface NotificationMapper {
     @Select("select * from notification where receiver =#{id} order by gmt_create desc")
     List<Notification> listById(Integer id);
 
-    @Select("select count(*) from notification where status =0")
+    @Select("select count(*) from notification where status =0 and receiver =#{id}")
     Long unreadCountById(Integer id);
 
     @Select("select * from notification where id=#{id}")

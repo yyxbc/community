@@ -20,7 +20,9 @@ public class HotTagTasks {
     @Autowired
     HotTagCache hotTagCache;
 
-   // @Scheduled(fixedRate = 6000)
+
+
+    //@Scheduled(fixedRate = 6000)
     @Scheduled(cron = "0 0 1 * * *")
     public void getHotTags() {
         log.info("hotTagSchedule start {}", new Date());
@@ -29,13 +31,18 @@ public class HotTagTasks {
         list = questionService.findall();
         for (Question question : list) {
             // log.info("List question {}",question.getId());
+            //System.out.println(question);
             String[] tags = StringUtils.split(question.getTag(), ",");
             for (String tag : tags) {
-                Integer priority = priorities.get("tag");
+                Integer priority = priorities.get(tag);
+                System.out.println(priority);
+                System.out.println(tag);
                 if (priority != null) {
-                    priorities.put(tag, priority + 5 + question.getCommentCount());
+                    priorities.put(tag, priority + 10 +question.getViewCount()+ 4*question.getCommentCount());
+                    System.out.println(priorities);
                 } else {
-                    priorities.put(tag, 5 + question.getCommentCount());
+                    priorities.put(tag, 10 +question.getViewCount()+ 4*question.getCommentCount());
+                    System.out.println(priorities);
                 }
             }
         }

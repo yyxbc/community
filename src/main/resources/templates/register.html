@@ -1,72 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <title>INSPINIA | Register</title>
-    <!-- Mainly scripts -->
+    <meta charset="UTF-8"/>
+    <title>index</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/community.css" rel="stylesheet"/>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="/js/3.1.1/jquery.min.js"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="/js/bootstrap.min.js"></script>
-    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
-
-
-    <link th:href="@{/font-awesome/css/font-awesome.css}" rel="stylesheet"/>
-    <link th:href="@{/css/plugins/iCheck/custom.css}" rel="stylesheet"/>
-    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <!-- Sweet Alert -->
-    <link th:href="@{/css/plugins/sweetalert/sweetalert.css}" rel="stylesheet"/>
-
 </head>
-
-<body class="gray-bg">
-
-<div class="middle-box text-center loginscreen  well  animated fadeInDown" style="width: 30em; margin: auto; margin-top: 150px;">
-    <div>
-        <div>
-            <h2 class="logo-name">欢迎您，先生/女士</h2>
-        </div>
-        <h3>欢迎注册</h3>
-        <!--<p>Create account to see it in action.</p>-->
-        <form class="m-t" role="form" action="register.html" method="post">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="userName" name="userName" required=""/>
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" placeholder="password" name="password" required=""/>
-            </div>
-            <div class="form-group">
-                <div class="checkbox i-checks"><label> <input type="checkbox"/><i></i> 记住账号密码 </label></div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">注  册</button>
-
-            <p class="text-muted text-center"><small>已经注册 ?</small></p>
-            <a class="btn btn-sm btn-white btn-block" th:href="login" href="login.html">登  录</a>
-        </form>
+<body class="login">
+<form id="form2" class="well" style="width: 30em; margin: auto; margin-top: 150px;background-color:rgba(255,255,255,.5)">
+    <h3>用户注册</h3>
+    <div class=" input-group input-group-md">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span> <input
+            id="username" type="text" class="form-control" placeholder="用户名" aria-describedby="sizing-addon1"/>
     </div>
-</div>
+    <br/>
+    <div class="input-group input-group-md">
+              <span class="input-group-addon" >
+                  <i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" id="password" class="form-control" placeholder="密码" aria-describedby="sizing-addon1"/>
+    </div>
 
-<script src="js/plugins/iCheck/icheck.min.js"></script>
-
-<script th:inline="javascript">
-    var error = [[${error}]];
-    $(document).ready(function () {
-        if(error!=null){
-            swal({
-                title : "温馨提示",
-                text : error
-            });
+    <button type="button" class="btn btn-success btn-block" style="margin-top: 15px">注  册</button>
+    <br/>
+    <p class="text-muted text-center"><small>已经注册 ?</small></p>
+    <a class="btn-sm btn-white btn-block text-center" th:href="login">登  录</a>
+</form>
+<script>
+    $("#form2").on("click", ".btn", function (e) {
+        var formData = $("#form2").serialize();
+        var username = $("#username").val();
+        if(!username){
+            alert("用户名不能为空");
+            return ;
         }
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    });
+        var password = $("#password").val();
+        if(!password){
+            alert("密码不能为空");
+            return ;
+        }
+        $.ajax({
+            url: "/register",
+            type: "post",
+            data: {"username": username, "password":password },
+            dataType: "json",
+            success: function (result) {
 
+                if (result.code==200 ) {
+                    alert("注册成功");
+                    window.location.href = "/login";
+                } else if(2014 == result.code){
+                    console.log(result.message);
+                    alert(result.message);
+                }
+            }
+        })
+    })
 </script>
 </body>
-
 </html>
+

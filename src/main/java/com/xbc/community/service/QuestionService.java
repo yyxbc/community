@@ -4,8 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.xbc.community.bean.Question;
 
 import java.util.List;
-
 public interface QuestionService {
+
 
     void createOrUpdate(Question question);
 
@@ -30,4 +30,14 @@ public interface QuestionService {
     PageInfo<Question> findByTag(String tag, int pageNo, int pageSize);
 
     int delete(Integer id);
+
+    Integer findQuestionCountByTag(String hot);
+
+    Integer findCommentCountByTag(String hot);
+
+    Integer findviewCountByTag(String hot);
+
+    PageInfo<Question> findBySort(String sort, int pageNo, int pageSize);
+
+     PageInfo<Question> list(String search, String tag, String sort, int pageNo, int pageSize);
 }

@@ -21,30 +21,46 @@
 <body>
 <nav th:replace="~{common :: navbar}"></nav>
 
-<div class="">
-    <ul class="nav nav-tabs" >
-        <li style="margin-left: 50px;" class="btn-info">
-            <button type="button" onclick="window.location.href='/'" class="btn btn-default" aria-haspopup="true" aria-expanded="false">
-                <span th:text="全部"></span></button>
-        </li>
-        <li th:each="selectCategory:${tagslist}">
-            <button type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span th:text="${selectCategory.categoryName}"></span> <span class="caret"></span></button>
-            <ul class="dropdown-menu" >
-                <li th:each="selectTag:${selectCategory.tags}">
-                    <a th:href="@{/(tag=${selectTag})}">
-                    <span class="label label-info">
-                                    <span class="glyphicon glyphicon-tags"  th:text="${'  '+selectTag}"></span></span></a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
+<!--<div class="">-->
+    <!--<ul class="nav nav-tabs" >-->
+        <!--<li style="margin-left: 50px;" class="btn-info">-->
+            <!--<button type="button" onclick="window.location.href='/'" class="btn btn-default" aria-haspopup="true" aria-expanded="false">-->
+                <!--<span th:text="全部"></span></button>-->
+        <!--</li>-->
+        <!--<li th:each="selectCategory:${tagslist}">-->
+            <!--<button type="button"  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--<span th:text="${selectCategory.categoryName}"></span> <span class="caret"></span></button>-->
+            <!--<ul class="dropdown-menu" >-->
+                <!--<li th:each="selectTag:${selectCategory.tags}">-->
+                    <!--<a th:href="@{/(tag=${selectTag})}">-->
+                    <!--<span class="label label-info">-->
+                                    <!--<span class="glyphicon glyphicon-tags"  th:text="${'  '+selectTag}"></span></span></a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h2><span class="glyphicon glyphicon-list" aria-hidden="true">发现</span></h2>
-            <hr>
+            <h3><span class="glyphicon glyphicon-list" aria-hidden="true">发现</span></h3>
+            <ul class="nav nav-tabs">
+                <li role="presentation" th:class="${sort == 'new' || sort == '' ? 'active':''}">
+                    <a th:href="@{/(sort='new')}">最新</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'hot30' ? 'active':''}">
+                    <a th:href="@{/(sort='hot30')}">30天最热</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'hot7' ? 'active':''}">
+                    <a th:href="@{/(sort='hot7')}">7天最热</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'hot' ? 'active':''}">
+                    <a th:href="@{/(sort='hot')}">最热</a>
+                </li>
+                <li role="presentation" th:class="${sort == 'no' ? 'active':''}">
+                    <a th:href="@{/(sort='no')}" class="red">消灭零回复</a>
+                </li>
+            </ul>
             <div class="media" th:each="question : ${questions.list}">
                 <div class="media-left " >
                     <a href="#"><img th:src="${question?.user?.avatarUrl}" class="media-object img-rounded" alt=""></a>
@@ -53,27 +69,27 @@
                     <h4 class="media-heading" >
                         <a th:href="'/question/'+${question.id}" th:text="${question?.title}"></a>
                     </h4>
-                    <span th:text="${question?.description}"></span> <br>
+                    <!--<span th:text="${question?.description}"></span> <br>-->
                     <span class="text-desc"><span th:text="${question?.commentCount}"></span>个回复· <span th:text="${question?.viewCount}"></span>次浏览 ·<span th:text="${#dates.format(question?.gmtCreate,'dd MMMM yyyy')}"></span></span>
                 </div>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li width="10%" th:if="${questions.hasPreviousPage}" aria-label="Previous">
-                        <a th:href="'?pageNo=1'"><span aria-hidden="true">&laquo;</span>首页</a>
+                        <a th:href="@{/(pageNo=1,search=${search},tag=${tag})}"><span aria-hidden="true">&laquo;</span>首页</a>
                     </li>
                     <li width="10%" th:if="${questions.hasPreviousPage}">
-                        <a th:href="@{/(pageNo=${questions.prePage},search=${search})}"><span aria-hidden="true">&lt;</span>上一页</a>
+                        <a th:href="@{/(pageNo=${questions.prePage},search=${search},tag=${tag})}"><span aria-hidden="true">&lt;</span>上一页</a>
                     </li>
                     <li width="10%" th:each="nav : ${questions.navigatepageNums}">
-                        <a th:href="@{/(pageNo=${nav},search=${search})}" th:text="${nav}" th:if="${nav != questions.pageNum}"></a>
+                        <a th:href="@{/(pageNo=${nav},search=${search},tag=${tag})}" th:text="${nav}" th:if="${nav != questions.pageNum}"></a>
                         <span style="font-weight: bold" th:if="${nav == questions.pageNum}" th:text="${nav}"></span>
                     </li>
                     <li width="10%" th:if="${questions.hasNextPage}">
-                        <a th:href="@{/(pageNo=${questions.nextPage},search=${search})}">下一页<span aria-hidden="true">&gt;</span></a>
+                        <a th:href="@{/(pageNo=${questions.nextPage},search=${search},tag=${tag})}">下一页<span aria-hidden="true">&gt;</span></a>
                     </li>
                     <li width="10%" th:if="${questions.hasNextPage}" aria-label="Next">
-                        <a th:href="@{/(pageNo=${questions.pages},search=${search})}">尾页<span aria-hidden="true">&raquo;</span></a>
+                        <a th:href="@{/(pageNo=${questions.pages},search=${search},tag=${tag})}">尾页<span aria-hidden="true">&raquo;</span></a>
                     </li>
                 </ul>
             </nav>
@@ -84,11 +100,13 @@
                 <h4>图片</h4>
                 <img src="/images/img.jpg" alt="" class="img-thumbnail">
             </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h3>热门标签</h3>
-                <ul class="question-related">
+                <ul class="question-related ">
                     <li th:each="tag:${tags}">
-                        <a th:href="@{/(pageNo=1,tag=${tag})}" th:text="${tag}"></a>
+                        <a  th:class="community-tag" th:href="@{/(pageNo=1,tag=${tag.name},sort=${sort})}" th:text="${tag.name}"></a>
+                        <div ><span th:text="${tag.questionCount}"></span>个问题·<span th:text="${tag.viewCount}"></span>次浏览·<span th:text="${tag.commentCount}"></span>个评论</div>
                     </li>
                 </ul>
             </div>

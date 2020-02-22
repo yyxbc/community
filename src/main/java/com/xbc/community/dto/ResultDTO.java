@@ -30,4 +30,11 @@ public class ResultDTO {
         resultDTO.setMessage("请求成功");
         return resultDTO;
     }
+
+    public static ResultDTO errorOf(){
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(500);
+        resultDTO.setMessage("请求失败");
+        return resultDTO;
+    }
 }

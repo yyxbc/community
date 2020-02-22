@@ -15,6 +15,12 @@ import java.util.List;
 public class TagServiceImpl implements TagService {
     @Autowired
     TagMapper tagMapper;
+
+    @Override
+    public int updateTag(String categoryName, String tag) {
+        return tagMapper.update(categoryName,tag);
+    }
+
     @Override
     public List<TagDTO> getAll() {
         List<Tag> tags =tagMapper.findall();
@@ -29,5 +35,14 @@ public class TagServiceImpl implements TagService {
             System.out.println(tagDTO);
         }
         return tagDTOS;
+    }
+
+    @Override
+    public List<String> findByCategoryName(String categoryName) {
+            Tag tag =tagMapper.findByCategoryName(categoryName);
+            String[] taglist = StringUtils.split(tag.getTags(),",");
+            System.out.println(taglist.toString());
+            List<String> tags=Arrays.asList(taglist);
+        return tags;
     }
 }

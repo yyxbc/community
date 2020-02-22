@@ -11,6 +11,10 @@ import java.util.List;
 public interface TagMapper {
     @Select("select * from tag")
     List<Tag> findall();
-    @Update("update tag set tags=#{tags}")
-    int update(Tag tag);
+
+    @Update("update tag set tags=#{tags} where category_name =#{categoryName}")
+    int update(String categoryName,String tags);
+
+    @Select("select * from tag where category_name =#{categoryName}")
+    Tag findByCategoryName(String categoryName);
 }

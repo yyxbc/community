@@ -6,6 +6,8 @@ import com.xbc.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -18,23 +20,49 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void insert(User user) {
-    userMapper.insert(user);
+    public User insert(User user) {
+        user.setGmtCreate(System.currentTimeMillis());
+        user.setGmtModified(user.getGmtCreate());
+        User dbUser =userMapper.findByUsername(user.getUsername());
+        if(dbUser!=null){
+            return null;
+        }
+        int id = userMapper.insert(user);
+        user.setId(id);
+        return user;
     }
+
     @Override
-    public void insertOrUpdate(User user){
-       User dbuser = userMapper.findByPassword(user.getPassword());
+    public User insertOrUpdate(User user){
+       User dbuser = userMapper.findByUsername(user.getUsername());
        if(dbuser==null){
-           user.setGmtCreate(System.currentTimeMillis());
-           user.setGmtModified(user.getGmtCreate());
-           userMapper.insert(user);
+            insert(user);
        }else{
-           dbuser.setGmtModified(System.currentTimeMillis());
-           dbuser.setAvatarUrl(user.getAvatarUrl());
-           dbuser.setUsername(user.getUsername());
-           dbuser.setToken(user.getToken());
-           userMapper.update(dbuser);
+           update(user);
        }
+       return user;
+    }
+
+    @Override
+    public User update(User user){
+        User dbuser = userMapper.findByUsername(user.getUsername());
+            dbuser.setGmtModified(System.currentTimeMillis());
+            dbuser.setAvatarUrl(user.getAvatarUrl());
+            dbuser.setUsername(user.getUsername());
+            dbuser.setToken(user.getToken());
+             userMapper.update(dbuser);
+            return dbuser;
+
+    }
+
+    @Override
+    public User findByUser(User user) {
+        return userMapper.findByUser(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userMapper.findAll();
     }
 
 }

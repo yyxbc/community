@@ -24,7 +24,7 @@ public class ProfileController {
     NotificationService notificationService;
 
     @GetMapping("/profile/{action}")
-    public String profile(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize, @PathVariable(name = "action") String section, Model model, @SessionAttribute(value = "user",required = false)User user) {
+    public String profile(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @PathVariable(name = "action") String section, Model model, @SessionAttribute(value = "user",required = false)User user) {
         if(user==null){
             return "redirect:/";
         }
@@ -36,11 +36,13 @@ public class ProfileController {
             model.addAttribute("pageinfo", questions);
         } else if (section.equals("replies")) {
             PageInfo<NotificationDTO> notificationDTOS = notificationService.list(user.getId(),pageNo,pageSize);
-            System.out.println(notificationDTOS.getList());
             model.addAttribute("section", section);
             model.addAttribute("sectionName", "最新回复");
-
             model.addAttribute("pageinfo", notificationDTOS);
+        }else if (section.equals("userinfo")) {
+            model.addAttribute("section", section);
+            model.addAttribute("sectionName", "个人资料");
+            System.out.println(111);
         }
         return "profile";
     }

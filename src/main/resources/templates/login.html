@@ -11,12 +11,12 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="/js/bootstrap.min.js"></script>
 </head>
-<body>
-<form id="form1" class="well" style="width: 30em; margin: auto; margin-top: 150px;">
+<body class="login">
+<form id="form1" class="well" style="width: 30em; margin: auto; margin-top: 150px;background-color:rgba(255,255,255,.5)">
     <h3>用户登录</h3>
     <div class=" input-group input-group-md">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span> <input
-            id="userName" type="text" class="form-control" placeholder="用户名" aria-describedby="sizing-addon1"/>
+            id="username" type="text" class="form-control" placeholder="用户名" aria-describedby="sizing-addon1"/>
     </div>
     <br/>
     <div class="input-group input-group-md">
@@ -24,18 +24,13 @@
                   <i class="glyphicon glyphicon-lock"></i></span>
         <input type="password" id="password" class="form-control" placeholder="密码" aria-describedby="sizing-addon1"/>
     </div>
-    <!--     <div class="well well-sm" style="text-align: center;">
-             <input  type="radio" name="kind" value="tea" /> 管理员 <input
-                   type="radio" name="kind" value="stu" /> 用户
-         </div>
-     -->
 
     <button type="button" class="btn btn-success btn-block" style="margin-top: 15px">登录</button>
     <br/>
     <div><p style="text-align: center;">第三方登录</p>
         <ul class="nav nav-tabs" style="padding-left: 80px;">
             <li>
-                <a href="https://github.com/login/oauth/authorize?client_id=8dc2ec6a8c22cbf3906a&redirect_uri=http://localhost:8888/callback&scope=user&state=1" ><img src="images/git.jpg" class="media-object img-circle git-img" alt=""></a>
+                <a href="https://github.com/login/oauth/authorize?client_id=8dbc6e07750093b1bc32&redirect_uri=http://47.94.23.170:8888/callback&scope=user&state=1" ><img src="images/git.jpg" class="media-object img-circle git-img" alt=""></a>
             </li>
             <li>
                 <a href="" ><img src="images/git.jpg" class="media-object img-circle git-img" alt=""></a>
@@ -45,22 +40,31 @@
             </li>
         </ul>
     </div>
-    <a class="btn btn-sm btn-white btn-block" style="text-align: right;"  href="/register"><h6>
+    <a class=" btn-sm btn-white btn-block" style="text-align: right;"  href="/register"><h6>
         还没有账户？前往注册</h6></a>
 </form>
 <script>
     $("#form1").on("click", ".btn", function (e) {
-        var radioValue = $('input:radio[name="kind"]:checked').val();
         var formData = $("#form1").serialize();
-
+        var username = $("#username").val();
+        if(!username){
+            alert("用户名不能为空");
+            return ;
+        }
+        var password = $("#password").val();
+        if(!password){
+            alert("密码不能为空");
+            return ;
+        }
         $.ajax({
             url: "/login",
             type: "post",
-            data: {"userName": $("#userName").val(), "password": $("#password").val()},
+            data: {"username": username, "password":password },
             dataType: "json",
             success: function (result) {
-                if ("true" == result.flag) {
-                    window.location.href = "http://www.baidu.com";
+                if (200 == result.code) {
+                    alert("登录成功");
+                    window.location.href = "/";
                 } else {
                     alert("用户名或者密码不对");
                 }

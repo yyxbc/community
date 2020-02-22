@@ -24,7 +24,7 @@ function comment2target(targetId, type, content) {
             console.log(response)
             if (response.code == 200) {
                 window.location.reload();
-            } else if (response.code = 2003) {
+            } else if (response.code == 2003) {
                 var isAccepted =confirm(response.message);
                 if(isAccepted){
                     window.open("https://github.com/login/oauth/authorize?client_id=8dbc6e07750093b1bc32&redirect_uri=http://47.94.23.170:8888/callback&scope=user&state=1");
@@ -90,7 +90,7 @@ function collapseComments(e) {
                         "class": "media-body"
                     }).append($("<h5/>", {
                         "class": "media-heading",
-                        "html": comment.user.name
+                        "html": comment.user.username
                     })).append($("<div/>", {
                         "class": "media-heading",
                         "html": comment.content
@@ -176,4 +176,85 @@ function delete_question() {
         },
         datatype: "json"
     });
+}
+
+
+function update(){
+    var categoryName = $("#Select").find("option:selected").text();
+    var tag = $("#tag").val();
+   $.ajax({
+       type: "post",
+       url: "/categories",
+       contentType : 'application/json',
+       data:JSON.stringify({
+           'categoryName': categoryName,
+           'tag':tag
+    }),
+       success: function (response) {
+           console.log(response);
+           if (response.code == 200) {
+               alert(response.message);
+               window.location.reload();
+               reset();
+           } else {
+               alert(response.message);
+           }
+       },
+       dateType:"json"
+   });
+
+}
+
+function reset(){
+    document.getElementById('inputbox').style.display = 'none';
+}
+function add_tag() {
+    var categoryName =$("#categoryName").text();
+    document.getElementById('inputbox').style.display='block';
+    var options =document.getElementById('Select').options;
+    if(options){
+        var len = options.length;
+        if(categoryName=="all"){
+            options[0].defaultSelected = true;
+            options[0].selected = true;
+        }else{
+            for(var i=0;i<len;i++){
+                if(options[i].text == categoryName){
+                    options[i].defaultSelected = true;
+                    options[i].selected = true;
+                    return true;
+                }
+            }
+        }
+
+    }
+}
+
+function del_tag(e) {
+   if(confirm('确定')){
+       var categoryName =$("#categoryName").text();
+       var tag =e.getAttribute("data-tag");
+       $.ajax({
+           type: "Delete",
+           url: "/categories",
+           contentType : 'application/json',
+           data:JSON.stringify({
+               'categoryName': categoryName,
+               'tag':tag
+           }),
+           success: function (response) {
+               console.log(response);
+               if (response.code == 200) {
+                   alert(response.message);
+                   window.location.reload();
+                   reset();
+               } else {
+                   alert(response.message);
+               }
+           },
+           dateType:"json"
+       });
+   }else{
+       return false;
+   }
 }

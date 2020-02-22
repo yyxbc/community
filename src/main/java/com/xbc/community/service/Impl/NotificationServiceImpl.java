@@ -1,5 +1,6 @@
 package com.xbc.community.service.Impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xbc.community.bean.Notification;
@@ -16,7 +17,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,19 +35,25 @@ public class NotificationServiceImpl implements NotificationService {
     public PageInfo<NotificationDTO> list(Integer id, int pageNo, int pageSize) {
         PageHelper.startPage(pageNo, pageSize);
         List<Notification>  notifications = notificationMapper.listById(id);
+        System.out.println(notifications+"+"+notifications.size());
         if(notifications.size()==0){
             PageInfo<NotificationDTO> notificationDTOPageInfo = new PageInfo(notifications);
             return notificationDTOPageInfo;
         }
-        List<NotificationDTO> notificationDTOS = new ArrayList<>();
-
+        PageInfo pageInfo = new PageInfo(notifications);
+        Page<NotificationDTO> notificationDTOS = new Page<>(pageInfo.getPageNum(), pageInfo.getPageSize());
+        notificationDTOS.setTotal(pageInfo.getTotal());
+        notificationDTOS.setReasonable(true);
+        notificationDTOS.setPageSizeZero(false);
         for(Notification notification:notifications){
             NotificationDTO notificationDTO = new NotificationDTO();
             BeanUtils.copyProperties(notification,notificationDTO);
             notificationDTO.setTypeName(NotificationTypeEnum.nameOfType(notification.getType()));
             notificationDTOS.add(notificationDTO);
         }
+       // System.out.println(notificationDTOS);
         PageInfo<NotificationDTO> notificationDTOPageInfo = new PageInfo(notificationDTOS);
+        //System.out.println(notificationDTOPageInfo);
         return notificationDTOPageInfo;
     }
 
