@@ -55,8 +55,7 @@ public class QuestionController {
     @ResponseBody
     public ResultDTO delete(@PathVariable(name="id") String id) {
         log.info("要删除的是："+id);
-        int num=1;
-        //int num =questionService.delete(parseInt(id));
+        int num =questionService.delete(Integer.parseInt(id));
         if(num==1){
             return ResultDTO.okOf();
         }else{

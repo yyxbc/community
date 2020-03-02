@@ -4,10 +4,13 @@ import com.xbc.community.exception.CustomizeErrorCode;
 import com.xbc.community.exception.CustomizeException;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ResultDTO {
     private Integer code;
     private String message;
+    private Object data;
     public static ResultDTO errorOf(Integer code,String message){
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.code=code;
@@ -35,6 +38,14 @@ public class ResultDTO {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(500);
         resultDTO.setMessage("请求失败");
+        return resultDTO;
+    }
+
+    public static ResultDTO okOf(List<Object> objects) {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(200);
+        resultDTO.setData(objects);
+        resultDTO.setMessage("请求成功");
         return resultDTO;
     }
 }

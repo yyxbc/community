@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 @Data
 public class TagDTO implements Serializable {
+    private Integer id;
     private String categoryName;
     private List<String> tags;
     private String tag;

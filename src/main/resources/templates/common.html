@@ -5,7 +5,7 @@
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top" th:fragment="navbar">
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <!-- Brand and toggle get grouped for better mobile display -->
         <ul class="nav nav-pills">
             <li role="presentation" th:class="${section == 'userinfo'} ? 'active':''">
@@ -15,7 +15,7 @@
                 <a class="navbar-brand" href="/categories?categoryName=all">Categories</a>
             </li>
             <li role="presentation" th:class="${section == 'members'} ? 'active':''">
-                <a class="navbar-brand" href="/members">Members</a>
+                <a class="navbar-brand" href="/members">Products</a>
             </li>
             <li>
                 <form class="navbar-form navbar-left" action="/" method="get">

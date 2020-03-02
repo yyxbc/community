@@ -16,7 +16,8 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     USER_USERNAME_IS_EMPTY(2012,"用户名不能为空"),
     USER_PASSWORD_IS_EMPTY(2013,"密码不能为空"),
     USER_IS_EXIST(2014,"用户已存在，请重新输入用户名"),
-    CHANGE_USERINFO_FAILED(2015,"修改个人资料失败");
+    CHANGE_USERINFO_FAILED(2015,"修改个人资料失败"),
+    TAG_IS_EMPTY(2016,"类别或分类名称为空");
 
 
 

@@ -26,6 +26,24 @@ public class QuestionServiceImpl implements QuestionService {
     QuestionMapper questionMapper;
 
     @Override
+    public int createorupdate(Question question) {
+        int num=0;
+        if (question.getId() == null || question.getId().equals("")) {
+            question.setGmtCreate(System.currentTimeMillis());
+            question.setGmtModified(question.getGmtCreate());
+             num =   questionMapper.create(question);
+        } else {
+            question.setGmtModified(System.currentTimeMillis());
+             num = questionMapper.update(question);
+            if (num != 1) {
+                log.error("问题未找到,{}",question);
+                 }
+        }
+
+        return num;
+    }
+
+    @Override
     public void createOrUpdate(Question question) {
         if (question.getId() == null || question.getId().equals("")) {
             question.setGmtCreate(System.currentTimeMillis());
@@ -221,5 +239,15 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> list = questionMapper.list(questionQueryDTO);
         PageInfo<Question> questions = new PageInfo(list);
         return questions;
+    }
+
+    @Override
+    public int deleteMulti(String[] idArray) {
+        int count =0;
+        for (String id:idArray){ ;
+            int i= questionMapper.delete(Integer.parseInt(id));
+            count+=i;
+        }
+        return count;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface QuestionMapper {
     @Insert("insert into question (title,description,gmt_create,gmt_modified,creator,tag) values(#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
-    void create(Question question);
+    int create(Question question);
 
     @Select("select q.*,u.* from question q inner join user u on q.creator=u.id order by q.gmt_create desc")
     @Results(id = "userMap", value = {
@@ -61,16 +61,16 @@ public interface QuestionMapper {
     @ResultMap(value = "userMap")
     List<Question> findByTag(String tag);
 
-    @Delete("delete * from question where id =#{id}")
+    @Delete("delete from question where id =#{id}")
     int delete(Integer id);
 
-    @Select("select count(*) from question where tag regexp #{hot}")
+    @Select("select ifnull(count(*),0) from question where tag regexp #{hot}")
     int findQuestionCountByTag(String hot);
 
-    @Select("select sum(comment_count) from question where tag regexp #{hot}")
+    @Select("select ifnull(sum(comment_count),0) from question where tag regexp #{hot}")
     int findCommentCountByTag(String hot);
 
-    @Select("select sum(view_count) from question where tag regexp #{hot}")
+    @Select("select ifnull(sum(view_count),0) from question where tag regexp #{hot}")
     int findViewCountByTag(String hot);
 
     @Select(" <script> SELECT * from question  " +

@@ -2,8 +2,10 @@ package com.xbc.community.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class HotTagDTO implements Comparable{
+public class HotTagDTO implements Comparable, Serializable {
     private String name;
     private Integer priority;
     private Integer questionCount;

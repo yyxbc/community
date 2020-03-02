@@ -6,6 +6,7 @@ import com.xbc.community.bean.Question;
 import java.util.List;
 public interface QuestionService {
 
+    int createorupdate(Question question);
 
     void createOrUpdate(Question question);
 
@@ -40,4 +41,6 @@ public interface QuestionService {
     PageInfo<Question> findBySort(String sort, int pageNo, int pageSize);
 
      PageInfo<Question> list(String search, String tag, String sort, int pageNo, int pageSize);
+
+    int deleteMulti(String[] idArray);
 }

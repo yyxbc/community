@@ -1,17 +1,14 @@
 package com.xbc.community.mapper;
 
 import com.xbc.community.bean.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user(username,password,token,gmt_create,gmt_modified,avatar_url) values(#{username}," +
-            "#{password},#{token},#{gmtCreate},#{gmtModified},#{avatarUrl})")
+    @Insert("insert into user(username,password,token,gmt_create,gmt_modified,avatar_url,phone,email) values(#{username}," +
+            "#{password},#{token},#{gmtCreate},#{gmtModified},#{avatarUrl},#{phone},#{email})")
      int insert(User user);
 
     @Select("select * from user where token =#{token}")
@@ -25,12 +22,15 @@ public interface UserMapper {
 
     @Select("select * from user where password =#{password}")
     User findByPassword(String password);
-    @Update("update user set username=#{username},token=#{token},gmt_modified=#{gmtModified},avatar_url=#{avatarUrl} where id =#{id}")
-    void update(User user);
+    @Update("update user set username=#{username},token=#{token},gmt_modified=#{gmtModified},avatar_url=#{avatarUrl},phone=#{phone},email=#{email} where id =#{id}")
+    int update(User user);
 
     @Select("select * from user where username =#{username} and password =#{password}")
     User findByUser(User user);
 
     @Select("select * from user")
     List<User> findAll();
+
+    @Delete(" DELETE FROM user WHERE id = #{id}")
+    int delete(Integer id);
 }

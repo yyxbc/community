@@ -26,6 +26,7 @@ public class SessionInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Cookie[] cookies = request.getCookies();
        User userSession =(User) request.getSession().getAttribute("user");
+
         if (cookies != null && cookies.length != 0) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
@@ -34,7 +35,10 @@ public class SessionInterceptor implements HandlerInterceptor {
                     if(user!=null){
                         request.getSession().setAttribute("user",user);
                         Long unreadCount =notificationService.unreadCount(user.getId());
-                        request.getSession().setAttribute("unreadCount", unreadCount);
+                        if( request.getSession().getAttribute("unreadCount")==null){
+                            request.getSession().setAttribute("unreadCount", unreadCount);
+                        }
+
                     }
                     break;
                 }

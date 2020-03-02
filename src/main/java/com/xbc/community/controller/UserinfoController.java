@@ -18,8 +18,8 @@ public class UserinfoController {
     UserService userService;
     @PostMapping("/profile/userinfo")
     public ResultDTO userinfo(User user){
-        user =userService.update(user);
-        if(user==null){
+        int i =userService.update(user);
+        if(i==0){
             return ResultDTO.errorOf(CustomizeErrorCode.CHANGE_USERINFO_FAILED);
         }
         return ResultDTO.okOf();

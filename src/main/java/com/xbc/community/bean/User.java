@@ -10,6 +10,8 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String token;
+    private String phone;
+    private String email;
     private Long gmtCreate;
     private Long gmtModified;
     private String avatarUrl;
