@@ -113,7 +113,7 @@ public class AuthorizeController {
         String token =UUID.randomUUID().toString();
         user.setToken(token);
         //user.setAvatarUrl();
-        System.out.println(user);
+       // System.out.println(user);
         user = userService.insert(user);
         if(user==null){
             log.info("注册失败，用户已存在");

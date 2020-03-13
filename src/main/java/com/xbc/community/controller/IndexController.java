@@ -61,9 +61,9 @@ public class IndexController {
                 hotTagDTO.setCommentCount(questionService.findCommentCountByTag(hot));
                 hots2.add(hotTagDTO);
             }
-            for (HotTagDTO t : hots2) {
-                System.out.println(t);
-            }
+//            for (HotTagDTO t : hots2) {
+//                System.out.println(t);
+//            }
             model.addAttribute("tags", hots2);
         }
 

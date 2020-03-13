@@ -50,7 +50,7 @@ public class TagController {
             tagCount.setName(tag);
             tagsCount.add(tagCount);
         }
-        System.out.println(tagsCount.get(1));
+        //System.out.println(tagsCount.get(1));
         model.addAttribute("tags", tagsCount);
         model.addAttribute("categoryName", categoryName);
         return "categories";

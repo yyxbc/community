@@ -36,10 +36,10 @@ public class QuestionController {
         }
         List<Comment> comments = commentService.listByQuestionId(id);
         questionService.incView(question);
-        for(Comment q:comments){
-            System.out.println(q);
-        }
-        System.out.println(question);
+//        for(Comment q:comments){
+//            System.out.println(q);
+//        }
+       // System.out.println(question);
         model.addAttribute("question", question);
         model.addAttribute("comments", comments);
         System.out.println(question);

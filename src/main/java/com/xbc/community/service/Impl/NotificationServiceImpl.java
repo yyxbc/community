@@ -35,7 +35,7 @@ public class NotificationServiceImpl implements NotificationService {
     public PageInfo<NotificationDTO> list(Integer id, int pageNo, int pageSize) {
         PageHelper.startPage(pageNo, pageSize);
         List<Notification>  notifications = notificationMapper.listById(id);
-        System.out.println(notifications+"+"+notifications.size());
+        //System.out.println(notifications+"+"+notifications.size());
         if(notifications.size()==0){
             PageInfo<NotificationDTO> notificationDTOPageInfo = new PageInfo(notifications);
             return notificationDTOPageInfo;
@@ -81,7 +81,7 @@ public class NotificationServiceImpl implements NotificationService {
         NotificationDTO notificationDTO = new NotificationDTO();
         BeanUtils.copyProperties(notification,notificationDTO);
         notificationDTO.setTypeName(NotificationTypeEnum.nameOfType(notification.getType()));
-        System.out.println(notificationDTO);
+        //System.out.println(notificationDTO);
         return notificationDTO;
     }
 }

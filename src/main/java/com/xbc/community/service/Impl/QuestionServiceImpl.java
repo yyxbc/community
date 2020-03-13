@@ -126,15 +126,15 @@ public class QuestionServiceImpl implements QuestionService {
             return new ArrayList<>();
         }
         String[] tags = StringUtils.split(question.getTag(),",");
-        System.out.println(tags.toString()+question.getTag());
+        //System.out.println(tags.toString()+question.getTag());
         String regexpTag = Arrays.stream(tags).collect(Collectors.joining("|"));
         Question regex=new Question();
         regex.setTag(regexpTag);
         regex.setId(question.getId());
         List<Question> questions =questionMapper.findByRelated(regex);
-        for(Question q:questions){
-            System.out.println(q);
-        }
+//        for(Question q:questions){
+//            System.out.println(q);
+//        }
         return questions;
     }
 
@@ -194,7 +194,7 @@ public class QuestionServiceImpl implements QuestionService {
                 }
                 break;
             }
-            System.out.println(questionQueryDTO);
+           // System.out.println(questionQueryDTO);
             if(questionQueryDTO==null){
                 return null;
             }

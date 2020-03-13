@@ -35,14 +35,14 @@ public class HotTagTasks {
             String[] tags = StringUtils.split(question.getTag(), ",");
             for (String tag : tags) {
                 Integer priority = priorities.get(tag);
-                System.out.println(priority);
-                System.out.println(tag);
+               // System.out.println(priority);
+               // System.out.println(tag);
                 if (priority != null) {
                     priorities.put(tag, priority + 10 +question.getViewCount()+ 4*question.getCommentCount());
-                    System.out.println(priorities);
+                   // System.out.println(priorities);
                 } else {
                     priorities.put(tag, 10 +question.getViewCount()+ 4*question.getCommentCount());
-                    System.out.println(priorities);
+                   // System.out.println(priorities);
                 }
             }
         }

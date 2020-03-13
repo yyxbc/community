@@ -38,7 +38,7 @@ public class TagServiceImpl implements TagService {
             System.out.println(taglist.toString());
             tagDTO.setTags(Arrays.asList(taglist));
             tagDTOS.add(tagDTO);
-            System.out.println(tagDTO);
+            //System.out.println(tagDTO);
         }
         return tagDTOS;
     }
@@ -47,7 +47,7 @@ public class TagServiceImpl implements TagService {
     public List<String> findByCategoryName(String categoryName) {
             Tag tag =tagMapper.findByCategoryName(categoryName);
             String[] taglist = StringUtils.split(tag.getTags(),",");
-            System.out.println(taglist.toString());
+            //System.out.println(taglist.toString());
             List<String> tags=Arrays.asList(taglist);
         return tags;
     }

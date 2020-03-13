@@ -42,7 +42,7 @@ public class ProfileController {
         }else if (section.equals("userinfo")) {
             model.addAttribute("section", section);
             model.addAttribute("sectionName", "个人资料");
-            System.out.println(111);
+            //System.out.println(111);
         }
         return "profile";
     }

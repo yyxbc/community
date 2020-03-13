@@ -45,7 +45,7 @@ public class CommentServiceImpl implements CommentService {
             if(commentId!=1){
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_INSERT_FAILED);
             }
-            System.out.println(comment);
+           // System.out.println(comment);
             commentMapper.incCommentCount(comment1);
             //创建通知
             Integer type = NotificationTypeEnum.REPLY_COMMENT.getType();
