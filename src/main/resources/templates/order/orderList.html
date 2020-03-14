@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="order">
+    <ul class="nav nav-tabs">
+        <li class="nav navbar-brand">订单号</li>
+        <li class="nav navbar-brand">商品id</li>
+        <li class="nav navbar-brand">创建时间</li>
+        <li class="nav navbar-brand">金额</li>
+        <li class="nav navbar-brand">订单状态</li>
+        <li class="nav navbar-brand navbar-right" style="margin-right: 50px;">操作</li>
+    </ul>
+    <ul class="nav nav-tabs" th:each="order:${pageinfo.list}" style="list-style: none">
+        <li class="nav navbar-brand" th:text="${order.orderSn}"></li>
+        <li class="nav navbar-brand" th:text="${order.couponId}"></li>
+        <li class="nav navbar-brand" th:text="${#dates.format(order.createTime,'yyyy-MM-dd HH:mm')}"></li>
+        <li class="nav navbar-brand" th:text="${order.payAmount}"></li>
+        <li class="nav navbar-brand" th:text="${order.status=='0'?'未支付':'已支付'}"></li>
+        <li class="nav navbar-brand" th:if="${order.status=='0'}" style="margin-right: 50px;">
+            <a th:href="'/order/index?outTradeNo=' + ${order.orderSn}+ '&totalAmount=' + ${order.payAmount}"
+               class="btn btn-success">前往支付</a>
+            <a  th:href="'/delorder?outTradeNo='+${order.orderSn}" class="btn btn-warning">取消订单</a>
+        </li>
+    </ul>
+</div>
+
+
+</body>
+</html>

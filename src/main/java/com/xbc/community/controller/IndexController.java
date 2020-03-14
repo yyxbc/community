@@ -1,9 +1,11 @@
 package com.xbc.community.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.xbc.community.Cache.HotTagCache;
 import com.xbc.community.bean.Question;
 import com.xbc.community.dto.HotTagDTO;
+import com.xbc.community.productSeckill.redis.RedisUtil;
 import com.xbc.community.service.QuestionService;
 import com.xbc.community.service.TagService;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +30,8 @@ public class IndexController {
     @Autowired
     TagService tagService;
 
+    @Autowired
+    RedisUtil redisUtil;
     @GetMapping("/")
     public String index(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
@@ -36,7 +40,30 @@ public class IndexController {
                         @RequestParam(name = "sort", required = false , defaultValue = "new") String sort,
                         Model model) {
         PageInfo<Question> questions = null;
-        List<String> tags = hotTagCache.getHots();
+        if(redisUtil.containsValueKey("hots_tag")){
+            List<HotTagDTO> hots2 = (List<HotTagDTO>) JSONObject.parse ((String)redisUtil.getValue("hots_tag"));
+            model.addAttribute("tags", hots2);
+        }else {
+            List<String> tags = hotTagCache.getHots();
+            if (tags.size() > 0) {
+                List<HotTagDTO> hots2 = new ArrayList<>();
+                for (String hot : tags) {
+                    System.out.println(hot);
+                    HotTagDTO hotTagDTO = new HotTagDTO();
+                    hotTagDTO.setName(hot);
+                    hotTagDTO.setViewCount(questionService.findviewCountByTag(hot));
+                    hotTagDTO.setQuestionCount(questionService.findQuestionCountByTag(hot));
+                    hotTagDTO.setCommentCount(questionService.findCommentCountByTag(hot));
+                    hots2.add(hotTagDTO);
+                }
+//            for (HotTagDTO t : hots2) {
+//                System.out.println(t);
+//            }
+                redisUtil.cacheValue("hots_tag", JSONObject.toJSONString(hots2));
+                model.addAttribute("tags", hots2);
+            }
+        }
+
         if (StringUtils.isNotBlank(tag)) {
             model.addAttribute("tag", tag);
             questions = questionService.findByTag(tag, pageNo, pageSize);
@@ -50,24 +77,8 @@ public class IndexController {
         } else {
             questions = questionService.findall(pageNo, pageSize);
         }
-        if (tags.size() > 0) {
-            List<HotTagDTO> hots2 = new ArrayList<>();
-            for (String hot : tags) {
-                System.out.println(hot);
-                HotTagDTO hotTagDTO = new HotTagDTO();
-                hotTagDTO.setName(hot);
-                hotTagDTO.setViewCount(questionService.findviewCountByTag(hot));
-                hotTagDTO.setQuestionCount(questionService.findQuestionCountByTag(hot));
-                hotTagDTO.setCommentCount(questionService.findCommentCountByTag(hot));
-                hots2.add(hotTagDTO);
-            }
-//            for (HotTagDTO t : hots2) {
-//                System.out.println(t);
-//            }
-            model.addAttribute("tags", hots2);
-        }
-
         model.addAttribute("questions", questions);
+        model.addAttribute("section", "questions");
         model.addAttribute("tagslist", tagService.getAll());
         return "index";
     }

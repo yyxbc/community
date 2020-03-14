@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="/js/editormd.min.js"></script>
+<script src="/js/lib/marked.min.js"></script>
+<script src="/js/lib/prettify.min.js"></script>
+<link href="/css/editormd.preview.min.css" rel="stylesheet" type="text/css"/>
+<div class="row">
+    <div class="col-xs-6">
+        <dl>
+            <dt>用户Id：</dt>
+            <dd th:text="${order.userId}"></dd>
+            <br/>
+
+            <dt>商品id：</dt>
+            <dd th:text="${order.couponId}"></dd>
+            <br/>
+
+            <dt>订单编号：</dt>
+            <dd th:text="${order.orderSn}"></dd>
+            <br/>
+
+            <dt>订单金额：</dt>
+            <dd th:text="${order.payAmount}"></dd>
+            <br/>
+
+            <dt>订单状态：</dt>
+            <dd th:text="${order.status=='0'?'待付款':'已支付'}"></dd>
+            <br/>
+
+            <dt>支付类型：</dt>
+            <dd th:text="${order.payType==0?'':'支付宝'}"></dd>
+            <br/>
+
+            <dt>订单类型：</dt>
+            <dd th:text="${order.orderType==0?'普通订单':'秒杀订单'}"></dd>
+            <br/>
+        </dl>
+    </div>
+
+    <div class="col-xs-6">
+        <dl>
+            <dt>创建时间：</dt>
+            <dd th:text="${#dates.format(order.createTime,'yyyy-MM-dd HH:mm')}"></dd>
+            <br/>
+            <dt>支付时间：</dt>
+            <dd th:text="${#dates.format(order.paymentTime,'yyyy-MM-dd HH:mm')}"></dd>
+            <br/>
+            <dt>更新时间：</dt>
+            <dd th:text="${#dates.format(order.modifyTime,'yyyy-MM-dd HH:mm')}"></dd>
+            <dt>删除状态：</dt>
+            <dd th:text="${order.deleteStatus==1?'已删除':'未删除'}"></dd>
+            <br/>
+        </dl>
+    </div>
+</div>

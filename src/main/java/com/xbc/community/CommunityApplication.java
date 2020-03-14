@@ -1,15 +1,19 @@
 package com.xbc.community;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@MapperScan(value = "com.xbc.community.mapper")
+//@MapperScan("com.xbc.community.mapper","com.xbc.community.productSeckill.mapper")
 @SpringBootApplication
 @EnableScheduling
-@EnableCaching
+//@EnableCaching
+@Configuration
+@EnableTransactionManagement
+@EnableAsync
 public class CommunityApplication {
 
 

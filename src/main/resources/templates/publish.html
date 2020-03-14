@@ -80,7 +80,6 @@
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                             <button type="button" class="btn btn-default" onclick="history.go(-1);">返回</button>
                             <button type="submit" class="btn btn-success btn-publish">发布</button>
-                            <button  th:if="${question!=null && session.user !=null && session.user.id == question?.creator}" onclick="delete_question()" class="btn btn-warning">删除</button>
                         </div>
                     </div>
                 </div>

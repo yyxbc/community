@@ -8,14 +8,14 @@
     <div class="container-fluid" >
         <!-- Brand and toggle get grouped for better mobile display -->
         <ul class="nav nav-pills">
-            <li role="presentation" th:class="${section == 'userinfo'} ? 'active':''">
+            <li role="presentation" th:class="${section == 'questions'} ? 'active':''">
                 <a class="navbar-brand" href="/">Questions</a>
             </li>
             <li role="presentation" th:class="${section == 'categories' }? 'active':''">
                 <a class="navbar-brand" href="/categories?categoryName=all">Categories</a>
             </li>
-            <li role="presentation" th:class="${section == 'members'} ? 'active':''">
-                <a class="navbar-brand" href="/members">Products</a>
+            <li role="presentation" th:class="${section == 'product'} ? 'active':''">
+                <a class="navbar-brand" href="/product">Products</a>
             </li>
             <li>
                 <form class="navbar-form navbar-left" action="/" method="get">
@@ -42,6 +42,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><a href="/profile/userinfo">个人资料</a></li>
                             <li><a href="/profile/questions">我的问题</a></li>
+                            <li><a href="/profile/order">我的订单</a></li>
                             <li><a href="/logout">退出登录</a></li>
                             <li role="separator" class="divider"></li>
                         </ul>

@@ -42,7 +42,7 @@ public class QuestionController {
        // System.out.println(question);
         model.addAttribute("question", question);
         model.addAttribute("comments", comments);
-        System.out.println(question);
+       // System.out.println(question);
         List<Question> relatedQuestions = questionService.selectRelated(question);
         if(relatedQuestions!=null){
             model.addAttribute("relatedQuestions",relatedQuestions);

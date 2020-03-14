@@ -1,0 +1,39 @@
+spring:
+  redis:
+    host: 47.94.23.170
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+  profiles:
+    active: prd
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  file:
+    name: logs/community.log
+    max-size: 100MB
+    max-history: 15
+  level:
+    com.xbc.community.mapper : debug
+    root: info
+
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true
+server:
+  port: 8888
+
+
+
+
+
+

@@ -155,27 +155,32 @@ function parseToDOM(str) {
     return div.childNodes;
 }
 
-function delete_question() {
-       var id = $("#question-id").val();
-       console.log(id);
-    $.ajax({
-        type: "post",
-        url: "/question/"+id,
-        contentType: "application/json",
-        data: {
+function delete_question(id1) {
+    if(confirm("确认删除吗？")){
+        var id = $("#question-id").val();
+        if(id1!=null){
+            id=id1;
+        }
+        console.log(id);
+        $.ajax({
+            type: "post",
+            url: "/question/"+id,
+            contentType: "application/json",
+            data: {
+                "id": id
+            },
+            success: function (response) {
+                console.log(response)
+                if (response.code == 200) {
+                    window.location.href="http://localhost:8888/";
+                } else {
+                    alert(response.message);
+                }
+            },
+            datatype: "json"
+        });
+    }
 
-            "id": id
-        },
-        success: function (response) {
-            console.log(response)
-            if (response.code == 200) {
-                window.location.href("http://localhost:8888/");
-            } else {
-                alert(response.message);
-            }
-        },
-        datatype: "json"
-    });
 }
 
 
@@ -247,6 +252,7 @@ function del_tag(e) {
                if (response.code == 200) {
                    alert(response.message);
                    window.location.reload();
+                   alert(response.message);
                    reset();
                } else {
                    alert(response.message);

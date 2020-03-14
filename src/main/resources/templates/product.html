@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/community.css"/>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/3.1.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<nav th:replace="~{common :: navbar}"></nav>
+<div class="container-fluid main">
+    <div class="row">
+            <div class="row">
+                <div class="col-sm-6 col-md-3" th:each="product:${seckills}">
+                    <div class="thumbnail">
+                        <img src="..." alt="...">
+                        <div class="caption">
+                            <h4 class="media-heading" th:text="${product.name}"></h4>
+                            <h4 class="media-heading" th:text="${product.price}"></h4>
+                            <h4 class="media-heading" th:text="${#dates.format(product.startTime,'dd MMMM yyyy')}"></h4>
+                            <h4 class="media-heading" th:text="${#dates.format(product.endTime,'dd MMMM yyyy')}"></h4>
+                            <h4 class="media-heading" th:text="${product.number}"></h4>
+                            <p><a href="#" class="btn btn-primary" role="button" th:onclick="'javascript:goSeckillByQueue(\''+${product.seckillId}+'\',\''+${session.user.id}+'\')'">立即购买</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<div th:replace="~{common :: foot}"></div>
+</body>
+
+<script>
+    function goSeckillByQueue(seckillId,openId) {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8888/api/seckill/goSeckillByQueue',
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify({
+                "stallActivityId": seckillId,
+                "openId": openId
+            }),
+            async: true,
+            success: function (data) {
+                if (data.isSuccess == true) {
+                    alert(data.responseMsg);
+                    this.seckillPollingQueue(seckillId,openId);
+                } else {
+                    //this.message += data.responseMsg + "<br/>";
+                    alert(data.responseMsg);
+                }
+            }.bind(this)
+        });
+    }
+    function seckillPollingQueue(seckillId,openId) {
+        var params = {stallActivityId: seckillId, openId: openId};
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8888/api/seckill/seckillPollingQueue',
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(params),
+            async: true,
+            success: function (data) {
+                if (data.isSuccess == true) {
+                    if (data.orderQualificationCode != null) {
+                        this.message += data.responseMsg + "，下单资格码为：" + data.orderQualificationCode + "<br/>";
+                        this.orderQualificationCode = data.orderQualificationCode;
+                        this.createOrder(seckillId,openId,this.orderQualificationCode);
+                    } else {
+                        this.message += data.responseMsg + "<br/>";
+                        setTimeout(function () {
+                            this.seckillPollingQueue()
+                        }.bind(this), 1000);
+                    }
+                } else {
+                    this.message += data.responseMsg + "<br/>";
+                }
+            }.bind(this)
+        });
+    }
+
+    function createOrder(seckillId,openId,orderQualificationCode) {
+        var params = {
+            stallActivityId: seckillId,
+            openId: openId,
+            orderQualificationCode: orderQualificationCode
+        };
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8888/api/seckill/createOrder',
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(params),
+            async: true,
+            success: function (data) {
+                if (data.isSuccess == true) {
+                   // this.message += "恭喜您，下单成功！ <br/>";
+                    //console.log(data.data);
+                    this.message += data.data.orderSn + data.data.totalAmount;
+                    if (confirm("下单成功,是否前往支付")) {
+                        window.location.href = "http://localhost:8888/order/index?outTradeNo=" + data.data.orderSn + "&totalAmount=" + data.data.payAmount;
+                    }
+                } else {
+                    this.message += data.responseMsg + "<br/>";
+                    alert( data.responseMsg );
+                    //this.createOrder();
+                }
+            }.bind(this)
+        });
+    }
+
+</script>
+</html>

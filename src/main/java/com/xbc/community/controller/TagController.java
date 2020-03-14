@@ -1,8 +1,10 @@
 package com.xbc.community.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xbc.community.dto.HotTagDTO;
 import com.xbc.community.dto.ResultDTO;
 import com.xbc.community.dto.TagDTO;
+import com.xbc.community.productSeckill.redis.RedisUtil;
 import com.xbc.community.service.QuestionService;
 import com.xbc.community.service.TagService;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +21,8 @@ public class TagController {
     TagService tagService;
 
     @Autowired
+    RedisUtil redisUtil;
+    @Autowired
     QuestionService questionService;
 
     public List<TagDTO> getTag() {
@@ -29,28 +33,35 @@ public class TagController {
 
     @GetMapping("/categories")
     public String categories(String categoryName, Model model) {
-        List<TagDTO> tagDTOS = new ArrayList<>();
-        tagDTOS = tagService.getAll();
+        List<HotTagDTO> tagsCount=new ArrayList<>();
+        List<TagDTO> tagDTOS = tagService.getAll();
         model.addAttribute("tagslist", tagDTOS);
         model.addAttribute("section", "categories");
-        List<String> tags = new ArrayList<>();
-        System.out.println(categoryName);
-        if (categoryName.equals("all") || categoryName == "all") {
-            for (TagDTO t : tagDTOS) {
-                List<String> tag = tagService.findByCategoryName(t.getCategoryName());
-                tags.addAll(tag);
+        if(redisUtil.containsValueKey("tags_"+categoryName)){
+            String object = (String)redisUtil.getValue("tags_"+categoryName);
+            tagsCount = (List<HotTagDTO>) JSONObject.parseArray(object, HotTagDTO.class);
+           // System.out.println(tagsCount);
+        }else{
+            List<String> tags = new ArrayList<>();
+            //System.out.println(categoryName);
+            if (categoryName.equals("all") || categoryName == "all") {
+                for (TagDTO t : tagDTOS) {
+                    List<String> tag = tagService.findByCategoryName(t.getCategoryName());
+                    System.out.println(tag);
+                    tags.addAll(tag);
+                }
+            } else {
+                tags = tagService.findByCategoryName(categoryName);
             }
-        } else {
-            tags = tagService.findByCategoryName(categoryName);
+            for (String tag : tags) {
+                String tagC = tag.replace("+", "").replace("*", "").replace("?", "");
+                HotTagDTO tagCount = tagService.getCount(tagC);
+                tagCount.setName(tag);
+                //System.out.println(tagCount);
+                tagsCount.add(tagCount);
+            }
+            redisUtil.cacheValue("tags_"+categoryName, JSONObject.toJSONString(tagsCount));
         }
-        List<HotTagDTO> tagsCount = new ArrayList<>();
-        for (String tag : tags) {
-            String tagC = tag.replace("+", "").replace("*", "").replace("?", "");
-            HotTagDTO tagCount = tagService.getCount(tagC);
-            tagCount.setName(tag);
-            tagsCount.add(tagCount);
-        }
-        //System.out.println(tagsCount.get(1));
         model.addAttribute("tags", tagsCount);
         model.addAttribute("categoryName", categoryName);
         return "categories";

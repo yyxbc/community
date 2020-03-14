@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="/js/editormd.min.js"></script>
+<script src="/js/lib/marked.min.js"></script>
+<script src="/js/lib/prettify.min.js"></script>
+<link href="/css/editormd.preview.min.css" rel="stylesheet" type="text/css"/>
+<div class="row">
+    <div class="col-xs-6">
+        <dl>
+
+            <dt>title：</dt>
+            <dd th:text="${question.title}"></dd>
+            <br/>
+
+            <dt>分类：</dt>
+            <dd th:text="${question.tag}"></dd>
+            <br/>
+
+            <dt>详情：</dt>
+            <dd id="question-view" >
+                <textarea style="display: none;" th:text="${question.description}"></textarea>
+            </dd>
+            <script type="text/javascript">
+                $(function () {
+                    var testView  = editormd.markdownToHTML("question-view", {
+                    });
+                });
+            </script>
+            <br/>
+
+        </dl>
+    </div>
+
+    <div class="col-xs-6">
+        <dl>
+            <dt>创建时间：</dt>
+            <dd th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></dd>
+            <br/>
+
+            <dt>更新时间：</dt>
+            <dd th:text="${#dates.format(question.gmtModified,'yyyy-MM-dd HH:mm')}"></dd>
+        </dl>
+    </div>
+</div>

@@ -2,6 +2,7 @@ package com.xbc.community.schedule;
 
 import com.xbc.community.Cache.HotTagCache;
 import com.xbc.community.bean.Question;
+import com.xbc.community.productSeckill.redis.RedisUtil;
 import com.xbc.community.service.QuestionService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +20,8 @@ public class HotTagTasks {
     QuestionService questionService;
     @Autowired
     HotTagCache hotTagCache;
-
+@Autowired
+    RedisUtil redisUtil;
 
 
     //@Scheduled(fixedRate = 6000)
@@ -56,6 +58,7 @@ public class HotTagTasks {
                 }
         );
         hotTagCache.updateTags(priorities);
+        redisUtil.removeValue("hots_tag");
         log.info("hotTagSchedule end {}", new Date());
     }
 }
