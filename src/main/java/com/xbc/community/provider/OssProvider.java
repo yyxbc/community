@@ -15,8 +15,8 @@ import java.util.Date;
 public class OssProvider {
     String endpoint = "http://oss-cn-beijing.aliyuncs.com";
     // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-    String accessKeyId = "LTAI4Fw93y64DFdE3CWkhcrg";
-    String accessKeySecret = "ROoGgDdjJBdgGdq88g26inSBlIho82";
+    String accessKeyId = "LTAI4Fw93y64DFdE3CWkhcrgx";
+    String accessKeySecret = "ROoGgDdjJBdgGdq88g26inSBlIho82x";
     String bucketName = "xbc1";
     String objectName = "xbc1";
     // 创建OSSClient实例。
